@@ -33,7 +33,7 @@ rand_prefix = (
 rand.seed(42)
 
 rand_data = rand_prefix
-for i in range(0xA0 * 0x78 * 3 / 2):
+for _ in range(0xA0 * 0x78 * 3 / 2):
     rand_data += struct.pack("B", rand.randint(0, 255))
 
 with open("CL_QCOM_NV12__CL_UNORM_INT8__RANDOM.dat", "wb") as f:
@@ -61,7 +61,7 @@ for i in range(6, 9):
             value = 255 if dist <= radius_squared else 0
             data += struct.pack("B", value)
     data += "\x00" * (width * height / 2)
-    filename = "CL_QCOM_NV12__CL_UNORM_INT8__{}x{}_CIRCLE.dat".format(width, height)
+    filename = f"CL_QCOM_NV12__CL_UNORM_INT8__{width}x{height}_CIRCLE.dat"
     with open(filename, "wb") as f:
         f.write(data)
 
@@ -95,7 +95,7 @@ rand_prefix = (
 )
 
 rand_data = rand_prefix
-for i in range(0xA2 * 0x78 / 2):
+for _ in range(0xA2 * 0x78 / 2):
     rand_data += struct.pack("<I", rand.randint(0, 2 ** 32) & tp10_mask)
 
 with open("CL_QCOM_TP10__CL_QCOM_UNORM_INT10__RANDOM.dat", "wb") as f:
@@ -137,7 +137,7 @@ rand_prefix = (
 )
 
 rand_data = rand_prefix
-for i in range(0xA2 * 0x78 * 3 / 2):
+for _ in range(0xA2 * 0x78 * 3 / 2):
     rand_data += struct.pack("<H", rand.randint(0, 2 ** 16) & p010_mask)
 
 with open("CL_QCOM_P010__CL_QCOM_UNORM_INT10__RANDOM.dat", "wb") as f:
